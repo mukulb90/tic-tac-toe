@@ -5,16 +5,16 @@ from utils.exceptions_utils import PlayerWinsException
 
 class RulesEngine(object):
 
-    def run(self, *args, **kwargs):
+    def run(self, callee, *args, **kwargs):
         for item in dir(self):
             if item.startswith('rule_'):
                 rule = getattr(self, item)
-                rule(args, kwargs)
+                rule(callee, args, kwargs)
 
 
 class RowRulesEngine(RulesEngine):
 
-    def rule_all_squares_equal(self, *args, **kwargs):
-        if self.squares[0].value:
-            if self.squares.count(self.squares[0]) == len(self.squares):
+    def rule_all_squares_equal(self, callee, *args, **kwargs):
+        if callee.squares[0].value:
+            if callee.squares.count(callee.squares[0]) == len(callee.squares):
                 raise PlayerWinsException('Rule passed :rule_all_squares_equal')
