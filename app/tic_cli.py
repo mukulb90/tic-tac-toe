@@ -1,10 +1,17 @@
 __author__ = 'mukul'
 
+import sys
+import os
+base_dir = os.path.abspath('../')
+print base_dir
+sys.path.append(base_dir)
+
 from models.board import GameBoard
 from utils.exceptions_utils import PlayerWinsException, InvalidOperationException
-import sys
+
 
 if __name__ == '__main__':
+
     board = GameBoard(3, 3)
     print "Welome to tic tac toe.\n"
     player = False
